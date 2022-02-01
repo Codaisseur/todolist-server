@@ -1,18 +1,22 @@
 const User = require("./models").user;
+const TodoList = require("./models").todoList;
 
 // Console.log all users in the database.
 // .findAll
 // .findOne
 // .findByPk => primary key => id
 
-const getAllUsers = async () => {
+const getUserandList = async (id) => {
   try {
-    const allUsers = await User.findAll({ raw: true });
-    console.log(allUsers);
+    const oneUser = await User.findByPk(id, {
+      include: [TodoList],
+    });
+    console.log(oneUser.get({ plain: true }));
   } catch (e) {
     console.log(e.message);
   }
 };
+getUserandList(1);
 
 // get one specific user by id
 const userById = async (id) => {
@@ -44,4 +48,4 @@ const userByEmail = async (searchEmail) => {
   }
 };
 
-userByEmail("leo@messi.com");
+// userByEmail("leo@messi.com");
