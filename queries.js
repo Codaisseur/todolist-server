@@ -1,23 +1,35 @@
 const User = require("./models").user;
 const TodoList = require("./models").todoList;
+const TodoItem = require("./models").todoItem;
 
 // Console.log all users in the database.
 // .findAll
 // .findOne
 // .findByPk => primary key => id
 
-const getUserandList = async (id) => {
+const getListAndItems = async () => {
   try {
-    const oneUser = await User.findByPk(id, {
-      include: [TodoList],
+    const lists = await TodoList.findAll({
+      include: [{ model: TodoItem }],
     });
-    console.log(oneUser.get({ plain: true }));
   } catch (e) {
     console.log(e.message);
   }
 };
-getUserandList(1);
 
+// getListAndItems();
+
+const getUserAndList = async (id) => {
+  try {
+    const oneUser = await User.findByPk(id, {
+      include: [{ model: TodoList, include: [{ model: TodoItem }] }],
+    });
+    console.log(oneUser);
+  } catch (e) {
+    console.log(e.message);
+  }
+};
+getUserAndList(1);
 // get one specific user by id
 const userById = async (id) => {
   try {
