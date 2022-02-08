@@ -6,13 +6,12 @@ const app = express();
 const userRouter = require("./routers/user");
 const todoListRouter = require("./routers/todoList");
 
-const ourMiddleWare = (req, res, next) => {
+const aaaaaAAAAA = (req, res, next) => {
   console.log("We happened in the middle");
   next();
 };
 
-
-const aaaaaAAAAA = (req, res, next) => {
+const ffffffffs = (req, res, next) => {
   console.log("The random number", randomNumber);
   const randomNumber = Math.ceil(Math.random() * 10);
 
@@ -20,7 +19,7 @@ const aaaaaAAAAA = (req, res, next) => {
   if (randomNumber > 6 && randomNumber <= 9) res.status(401).send("FAILED!!");
 };
 
-const anotherMiddleware = (req, res, next) => {
+const iiioooo = (req, res, next) => {
   const randomNumber = Math.ceil(Math.random() * 10);
   console.log("The random number", randomNumber);
 
