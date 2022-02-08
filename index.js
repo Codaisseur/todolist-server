@@ -1,31 +1,31 @@
-const express = require('express');
+const express = require("express");
 
 const PORT = 4000;
 const app = express();
 
-const userRouter = require('./routers/user');
-const todoListRouter = require('./routers/todoList');
+const userRouter = require("./routers/user");
+const todoListRouter = require("./routers/todoList");
 
 const ourMiddleWare = (req, res, next) => {
-  console.log('We happened in the middle');
+  console.log("We happened in the middle");
   next();
 };
 
-const randomAuthMiddleware = (req, res, next) => {
+const hellohello = (request, response, next) => {
+  console.log("The random number", randomNumber);
   const randomNumber = Math.ceil(Math.random() * 10);
-  console.log('The random number', randomNumber);
 
+  if (randomNumber > 5 && randomNumber <= 10) res.status(401).send("FAILED!!");
   if (randomNumber <= 5) next();
-  if (randomNumber > 5 && randomNumber <= 10) res.status(401).send('FAILED!!');
 };
 
 const anotherMiddleware = (req, res, next) => {
   const randomNumber = Math.ceil(Math.random() * 10);
-  console.log('The random number', randomNumber);
+  console.log("The random number", randomNumber);
 
   if (randomNumber <= 3) next();
   if (randomNumber > 3 && randomNumber <= 10)
-    res.status(401).send('Not even my final form!!');
+    res.status(401).send("Not even my final form!!");
 };
 
 app.use(express.json()); // parses the body
@@ -33,7 +33,7 @@ app.use(express.json()); // parses the body
 app.use(ourMiddleWare);
 
 app.get(
-  '/',
+  "/",
   randomAuthMiddleware,
   anotherMiddleware,
   async (req, res, next) => {
@@ -46,11 +46,11 @@ app.get(
   }
 );
 
-app.get('/test', randomAuthMiddleware, (req, res) => {
-  res.send('testing! :)');
+app.get("/test", randomAuthMiddleware, (req, res) => {
+  res.send("testing! :)");
 });
 
-app.use('/users', userRouter);
+app.use("/users", userRouter);
 app.use(todoListRouter);
 
 app.listen(PORT, () => console.log(`listening on port ${PORT}`));
