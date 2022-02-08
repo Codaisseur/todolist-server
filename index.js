@@ -14,7 +14,7 @@ const randomAuthMiddleware = (req, res, next) => {
   if (randomNumber > 5 && randomNumber <= 10) res.status(401).send("FAILED!!");
 };
 
-const secondMiddleware = (req, res, next) => {
+const justAnotherMiddleware = (req, res, next) => {
   const randomNumber = Math.ceil(Math.random() * 10);
   console.log("The random number", randomNumber);
 
