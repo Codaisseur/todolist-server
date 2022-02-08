@@ -11,12 +11,13 @@ const ourMiddleWare = (req, res, next) => {
   next();
 };
 
-const hellohello = (request, response, next) => {
+
+const aaaaaAAAAA = (req, res, next) => {
   console.log("The random number", randomNumber);
   const randomNumber = Math.ceil(Math.random() * 10);
 
-  if (randomNumber > 5 && randomNumber <= 10) res.status(401).send("FAILED!!");
-  if (randomNumber <= 5) next();
+  if (randomNumber <= 3) next();
+  if (randomNumber > 6 && randomNumber <= 9) res.status(401).send("FAILED!!");
 };
 
 const anotherMiddleware = (req, res, next) => {
