@@ -11,6 +11,7 @@ const ourMiddleWare = (req, res, next) => {
   next();
 };
 
+
 const aaaaaAAAAA = (req, res, next) => {
   console.log("The random number", randomNumber);
   const randomNumber = Math.ceil(Math.random() * 10);
